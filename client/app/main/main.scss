@@ -25,3 +25,63 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+.bg-orange {
+  background: #fbca11;
+  clear: both;
+}
+
+.bg-green {
+  background: #00a3a8;
+  clear: both;
+}
+
+.faq-title {
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  text-align: left;
+}
+.btn.btn-orange {
+    background: #fbca11;
+    font-size: 21px;
+    padding: 10px 15px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+.btn.btn-orange:hover {
+    background: #FFF;
+    color: #fbca11;
+}
+
+.btn.btn-green {
+    background: #00a3a8;
+    font-size: 21px;
+    padding: 10px 15px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.btn.btn-green:hover {
+    background: #FFF;
+    color: #00a3a8;
+}
+
+.full-btn {
+    width: 100%;
+}
+.shadows {
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: 21px;
+    text-shadow: 0 3px 5px #000, 0 3px 5px #000;
+}
