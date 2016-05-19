@@ -16,4 +16,13 @@ var ThingSchema = new mongoose.Schema({
   active: Boolean
 });
 
+ThingSchema.pre('find', function(next){
+  this.populate('user', 'name');
+  next();
+});
+ThingSchema.pre('findOne', function(next){
+  this.populate('user', 'name');
+  next();
+});
+
 export default mongoose.model('Thing', ThingSchema);
