@@ -83,7 +83,8 @@
       </p>
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="campaign in $ctrl.campaigns">
-      <li><a href="#" uib-tooltip="{{campaign.info}}">{{campaign.name}}<button type="button" class="close" ng-click="$ctrl.deleteCampaign(campaign)">&times;</button></a></li>
+      <li><a href="#" uib-tooltip="{{campaign.info}}">{{campaign.user.name}} - {{campaign.name}}
+      <button ng-if="isMyItem(campaign)" type="button" class="close" ng-click="$ctrl.deleteCampaign(campaign)">&times;</button></a></li>
     </ul>
   </div>
 </div>
@@ -102,7 +103,45 @@
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
       <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.user.name}} - {{thing.name}}
-      <button ng-if="isMyThing(thing)" type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
+      <button ng-if="isMyItem(thing)" type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
+    </ul>
+  </div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Feedback:</h1>
+    <form class="thing-form">
+      <p class="input-group">
+        <input type="text" class="form-control" placeholder="What's your bright idea?" ng-model="$ctrl.newFeedback">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" ng-click="$ctrl.addFeedback()">Add New</button>
+        </span>
+      </p>
+    </form>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="feedback in $ctrl.feedbacks">
+      <li><a href="#" uib-tooltip="{{feedback.info}}">{{feedback.user.name}} - {{feedback.name}}
+      <button ng-if="isMyItem(feedback)" type="button" class="close" ng-click="$ctrl.deleteFeedback(feedback)">&times;</button></a></li>
+    </ul>
+  </div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Messages:</h1>
+    <form class="thing-form">
+      <p class="input-group">
+        <input type="text" class="form-control" placeholder="What's your bright idea?" ng-model="$ctrl.newMessage">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" ng-click="$ctrl.addMessage()">Add New</button>
+        </span>
+      </p>
+    </form>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="message in $ctrl.messages">
+      <li><a href="#" uib-tooltip="{{message.info}}">{{message.user.name}} - {{message.name}}
+      <button ng-if="isMyItem(message)" type="button" class="close" ng-click="$ctrl.deleteMessage(message)">&times;</button></a></li>
     </ul>
   </div>
 </div>

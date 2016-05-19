@@ -52,6 +52,17 @@ function handleEntityNotFound(res) {
   };
 }
 
+function handleUnauthorized(req, res) {
+  return function(entity) {
+    if (!entity) {return null;}
+    if(entity.user._id.toString() !== req.user._id.toString()){
+      res.send(403).end();
+      return null;
+    }
+    return entity;
+  }
+}
+
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
@@ -76,6 +87,7 @@ export function show(req, res) {
 
 // Creates a new Message in the DB
 export function create(req, res) {
+  req.body.user = req.user;
   return Message.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
@@ -97,6 +109,7 @@ export function update(req, res) {
 export function destroy(req, res) {
   return Message.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
+    .then(handleUnauthorized(req, res))
     .then(removeEntity(res))
     .catch(handleError(res));
 }

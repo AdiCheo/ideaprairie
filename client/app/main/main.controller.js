@@ -9,26 +9,47 @@
       this.socket = socket;
       this.awesomeThings = [];
       this.campaigns = [];
+      this.feedbacks = [];
+      this.messages = [];
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
-      $scope.isMyThing = function(thing){
-        return (Auth.isLoggedIn() && thing.user && thing.user._id===Auth.getCurrentUser()._id) || Auth.isAdmin;;
+      $scope.isMyItem = function(item){
+        return (Auth.isLoggedIn() && item.user && item.user._id===Auth.getCurrentUser()._id) || Auth.isAdmin;
       };
     }
 
     $onInit() {
-      this.$http.get('/api/things')
-        .then(response => {
-          this.awesomeThings = response.data;
-          this.socket.syncUpdates('thing', this.awesomeThings);
+      Promise.all([
+        this.$http.get('/api/things')
+          .then(response => {
+            this.awesomeThings = response.data;
+            this.socket.syncUpdates('thing', this.awesomeThings);
+          }),
+        this.$http.get('/api/campaigns')
+          .then(response => {
+            this.campaigns = response.data;
+            this.socket.syncUpdates('campaign', this.campaigns);
+          }),
+        this.$http.get('/api/feedbacks')
+          .then(response => {
+            this.feedbacks = response.data;
+            this.socket.syncUpdates('feedback', this.feedbacks);
+          }),
+        this.$http.get('/api/messages')
+          .then(response => {
+            this.messages = response.data;
+            this.socket.syncUpdates('message', this.messages);
+        })]);
+    }
+    addThing() {
+      if (this.newThing) {
+        this.$http.post('/api/things', {
+          name: this.newThing
         });
-      this.$http.get('/api/campaigns')
-        .then(response => {
-          this.campaigns = response.data;
-          this.socket.syncUpdates('campaign', this.campaigns);
-        });
+        this.newThing = '';
+      }
     }
 
     addCampaign() {
@@ -40,22 +61,43 @@
       }
     }
 
-    addThing() {
-      if (this.newThing) {
-        this.$http.post('/api/things', {
-          name: this.newThing
+
+    addFeedback() {
+      if (this.newFeedback) {
+        this.$http.post('/api/feedbacks', {
+          name: this.newFeedback
         });
-        this.newThing = '';
+        this.newFeedback = '';
       }
     }
 
-    deleteCampaign(campaign) {
-      this.$http.delete('/api/campaigns/' + campaign._id);
+
+    addMessage() {
+      if (this.newMessage) {
+        this.$http.post('/api/messages', {
+          name: this.newMessage
+        });
+        this.newMessage = '';
+      }
     }
+
 
     deleteThing(thing) {
       this.$http.delete('/api/things/' + thing._id);
     }
+    
+    deleteCampaign(campaign) {
+      this.$http.delete('/api/campaigns/' + campaign._id);
+    }
+
+    deleteFeedback(feedback) {
+      this.$http.delete('/api/feedbacks/' + feedback._id);
+    }
+
+    deleteMessage(message) {
+      this.$http.delete('/api/messages/' + message._id);
+    }
+
   }
 
   angular.module('ideaApp')

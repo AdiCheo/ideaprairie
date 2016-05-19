@@ -59,6 +59,17 @@ function handleError(res, statusCode) {
   };
 }
 
+function handleUnauthorized(req, res) {
+  return function(entity) {
+    if (!entity) {return null;}
+    if(entity.user._id.toString() !== req.user._id.toString()){
+      res.send(403).end();
+      return null;
+    }
+    return entity;
+  }
+}
+
 // Gets a list of Campaigns
 export function index(req, res) {
   return Campaign.find().exec()
@@ -76,6 +87,7 @@ export function show(req, res) {
 
 // Creates a new Campaign in the DB
 export function create(req, res) {
+  req.body.user = req.user;
   return Campaign.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
@@ -97,6 +109,7 @@ export function update(req, res) {
 export function destroy(req, res) {
   return Campaign.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
+    .then(handleUnauthorized(req, res))
     .then(removeEntity(res))
     .catch(handleError(res));
 }
