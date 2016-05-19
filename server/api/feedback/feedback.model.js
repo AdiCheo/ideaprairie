@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 var FeedbackSchema = new mongoose.Schema({
   name: String,
-  info: String,
+  rating: String,
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'

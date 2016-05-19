@@ -4,8 +4,11 @@ import mongoose from 'mongoose';
 
 var MessageSchema = new mongoose.Schema({
   name: String,
-  info: String,
   user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
+  to: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
