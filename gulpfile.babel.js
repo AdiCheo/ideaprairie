@@ -678,5 +678,5 @@ gulp.task('buildcontrol:openshift', function(done) {
 });
 
 gulp.task('default', function() {
-  runSequence('coverage:pre');
+  runSequence('serve');
 });
