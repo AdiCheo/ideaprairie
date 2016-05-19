@@ -23,3 +23,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../components/modal/modal';
 @import '../components/oauth-buttons/oauth-buttons';
 /* endinject */
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background: #00a3a8;
+    border: 0px;
+}
