@@ -6,7 +6,7 @@ var ThingSchema = new mongoose.Schema({
   name: String,
   info: String,
   user: {
-    type: Schema.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
   createdAt: {
