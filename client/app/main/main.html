@@ -76,7 +76,12 @@
     <h1 class="page-header">Contests:</h1>
     <form class="campaign-form">
       <p class="input-group">
-        <input type="text" class="form-control" placeholder="Add a new campaign here." ng-model="$ctrl.newCampaign">
+        <input type="text" class="form-control" placeholder="Enter a name for your contest" ng-model="$ctrl.newCampaign">
+        <input type="text" class="form-control" placeholder="Add a description" ng-model="$ctrl.newCampaignInfo">
+        <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.newCampaignPrivacy">
+        <input type="text" class="form-control" placeholder="Add image" ng-model="$ctrl.newCampaignImage">
+        <input type="text" class="form-control" placeholder="Add rewards" ng-model="$ctrl.newCampaignRewards">
+        <input type="text" class="form-control" placeholder="Add documents" ng-model="$ctrl.newCampaignDoc">
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" ng-click="$ctrl.addCampaign()">Add New</button>
         </span>

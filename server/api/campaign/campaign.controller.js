@@ -88,6 +88,11 @@ export function show(req, res) {
 // Creates a new Campaign in the DB
 export function create(req, res) {
   req.body.user = req.user;
+  req.body.info = req.info;
+  req.body.privacy = req.privacy;
+  req.body.image = req.image;
+  req.body.rewards = req.rewards;
+  req.body.documents = req.documents;
   return Campaign.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));

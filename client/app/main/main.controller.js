@@ -55,9 +55,19 @@
     addCampaign() {
       if (this.newCampaign) {
         this.$http.post('/api/campaigns', {
-          name: this.newCampaign
+          name: this.newCampaign,
+          info: this.newCampaignInfo,
+          privacy: this.newCampaignPrivacy,
+          image: this.newCampaignImage,
+          rewards: this.newCampaignRewards,
+          documents: this.newCampaignDoc
         });
         this.newCampaign = '';
+        this.newCampaignInfo = '';
+        this.newCampaignPrivacy = '';
+        this.newCampaignImage = '';
+        this.newCampaignRewards = '';
+        this.newCampaignDoc = '';
       }
     }
 
