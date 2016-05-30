@@ -6,7 +6,6 @@ var ThingSchema = new mongoose.Schema({
   name: String,
   info: String,
   images: String,
-  video: String,
   documents: String,
   user: {
     type: mongoose.Schema.ObjectId,

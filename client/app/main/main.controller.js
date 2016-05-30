@@ -44,12 +44,19 @@
             this.socket.syncUpdates('message', this.messages);
         })]);
     }
+    
     addThing() {
       if (this.newThing) {
         this.$http.post('/api/things', {
-          name: this.newThing
+          name: this.newThing,
+          info: this.newThingInfo,
+          image: this.newThingImage,
+          documents: this.newThingDoc
         });
         this.newThing = '';
+        this.newThingInfo = '';
+        this.newThingImage = '';
+        this.newThingDoc = '';
       }
     }
 
