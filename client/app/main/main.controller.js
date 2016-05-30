@@ -11,6 +11,7 @@
       this.campaigns = [];
       this.feedbacks = [];
       this.messages = [];
+      this.isLoggedIn = Auth.isLoggedIn;
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
