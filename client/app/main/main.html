@@ -80,77 +80,76 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Contests:</h1>
-    <form class="campaign-form form-horizontal">
+    <form class="campaign-form form-horizontal well">
+      <fieldset>
       
-    <fieldset>
-    
-    <!-- Form Name -->
-    <legend>New Contest</legend>
-      <p class="input-group">
+      <!-- Form Name -->
+      <legend>New Contest</legend>
+        <p class="input-group">
+          
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Contest Name</label>  
+            <div class="col-md-4">
+            <input id="textinput" name="textinput" type="text" placeholder="Enter a name for your contest" class="form-control input-md" ng-model="$ctrl.newCampaign">
+            </div>
+          </div>
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add Image</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignImage">
+            </div>
+          </div>
         
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="textinput">Contest Name</label>  
-          <div class="col-md-4">
-          <input id="textinput" name="textinput" type="text" placeholder="Enter a name for your contest" class="form-control input-md" ng-model="$ctrl.newCampaign">
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textarea">Contest Description</label>
+            <div class="col-md-4">                     
+              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newCampaignInfo">Add a description</textarea>
+            </div>
           </div>
-        </div>
-        
-        <!-- File Button --> 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="filebutton">Add Image</label>
-          <div class="col-md-4">
-            <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignImage">
+          
+          <!-- Multiple Radios -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="radios">Privacy</label>
+            <div class="col-md-4">
+            <div class="radio">
+              <label for="radios-0">
+                <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                Public
+              </label>
+          	</div>
+            <div class="radio">
+              <label for="radios-1">
+                <input type="radio" name="radios" id="radios-1" value="2">
+                Invite Only
+              </label>
+          	</div>
+            </div>
           </div>
-        </div>
-      
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="textarea">Contest Description</label>
-          <div class="col-md-4">                     
-            <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newCampaignInfo">Add a description</textarea>
+          <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.newCampaignPrivacy">
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add Files</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignRewards">
+            </div>
           </div>
-        </div>
-        
-        <!-- Multiple Radios -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="radios">Privacy</label>
-          <div class="col-md-4">
-          <div class="radio">
-            <label for="radios-0">
-              <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-              Public
-            </label>
-        	</div>
-          <div class="radio">
-            <label for="radios-1">
-              <input type="radio" name="radios" id="radios-1" value="2">
-              Invite Only
-            </label>
-        	</div>
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add Rewards</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignDoc">
+            </div>
           </div>
-        </div>
-        <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.newCampaignPrivacy">
-        
-        <!-- File Button --> 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="filebutton">Add Files</label>
-          <div class="col-md-4">
-            <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignRewards">
-          </div>
-        </div>
-        
-        <!-- File Button --> 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="filebutton">Add Rewards</label>
-          <div class="col-md-4">
-            <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignDoc">
-          </div>
-        </div>
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" ng-click="$ctrl.addCampaign()">Add New</button>
-        </span>
-      </p>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addCampaign()">Add New</button>
+          </span>
+        </p>
       </fieldset>
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="campaign in $ctrl.campaigns">
@@ -164,45 +163,52 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Ideas:</h1>
-    <form class="thing-form">
-      <p class="input-group">
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="textinput">Idea Title</label>  
-          <div class="col-md-4">
-          <input id="textinput" name="textinput" type="text" placeholder="What's your bright idea?" class="form-control input-md" ng-model="$ctrl.newCampaign" ng-model="$ctrl.newThing">
+    <form class="thing-form form-horizontal well">
+      
+      <fieldset>
+      
+      <!-- Form Name -->
+      <legend>New Idea</legend>
+        <p class="input-group">
+          
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Idea Title</label>  
+            <div class="col-md-4">
+            <input id="textinput" name="textinput" type="text" placeholder="What's your bright idea?" class="form-control input-md" ng-model="$ctrl.newThing">
+            </div>
           </div>
-        </div>
-        
-        <!-- File Button --> 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="filebutton">Add an Image</label>
-          <div class="col-md-4">
-            <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newThingImage">
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add an Image</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newThingImage">
+            </div>
           </div>
-        </div>
-        
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="textarea">Idea Description</label>
-          <div class="col-md-4">                     
-            <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newThingInfo">Add a description</textarea>
+          
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textarea">Idea Description</label>
+            <div class="col-md-4">                     
+              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newThingInfo">Add a description</textarea>
+            </div>
           </div>
-        </div>
-        
-        <!-- File Button --> 
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="filebutton">Add Files</label>
-          <div class="col-md-4">
-            <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newThingDoc">
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add Files</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newThingDoc">
+            </div>
           </div>
-        </div>
+          
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
+          </span>
+        </p>
         
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
-        </span>
-      </p>
+      </fieldset>
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
       <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.user.name}} - {{thing.name}}
@@ -215,9 +221,40 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Feedback:</h1>
-    <form class="thing-form">
+    <form class="thing-form form-horizontal well">
       <p class="input-group">
-        <input type="text" class="form-control" placeholder="What's your bright idea?" ng-model="$ctrl.newFeedback">
+        
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="textarea">Feedback</label>
+          <div class="col-md-4">                     
+            <textarea class="form-control" id="textarea" name="textarea" placeholder="Feedback comment"  ng-model="$ctrl.newFeedback"> </textarea>
+          </div>
+        </div>
+              
+        <!-- Multiple Radios (inline) -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="radios">Idea Rating:</label>
+          <div class="col-md-4"> 
+            <label class="radio-inline" for="radios-0">
+              <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+              1
+            </label> 
+            <label class="radio-inline" for="radios-1">
+              <input type="radio" name="radios" id="radios-1" value="2">
+              2
+            </label> 
+            <label class="radio-inline" for="radios-2">
+              <input type="radio" name="radios" id="radios-2" value="3">
+              3
+            </label> 
+            <label class="radio-inline" for="radios-3">
+              <input type="radio" name="radios" id="radios-3" value="4">
+              4
+            </label>
+          </div>
+        </div>
+
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" ng-click="$ctrl.addFeedback()">Add New</button>
         </span>
@@ -234,9 +271,22 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Messages:</h1>
-    <form class="thing-form">
+    <form class="thing-form form-horizontal well">
       <p class="input-group">
-        <input type="text" class="form-control" placeholder="What's your bright idea?" ng-model="$ctrl.newMessage">
+              
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="selectbasic">To:</label>
+          <div class="col-md-4">
+            <select id="selectbasic" name="selectbasic" class="form-control">
+              <option value="1">Adi</option>
+              <option value="2">Blake</option>
+              <option value="3">Ben</option>
+            </select>
+          </div>
+        </div>
+        
+        <input type="text" class="form-control" placeholder="Write your message" ng-model="$ctrl.newMessage">
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" ng-click="$ctrl.addMessage()">Add New</button>
         </span>

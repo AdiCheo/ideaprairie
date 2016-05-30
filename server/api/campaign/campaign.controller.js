@@ -87,7 +87,6 @@ export function show(req, res) {
 
 // Creates a new Campaign in the DB
 export function create(req, res) {
-  console.log(req);
   req.body.user = req.user;
   return Campaign.create(req.body)
     .then(respondWithResult(res, 201))
