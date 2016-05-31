@@ -194,10 +194,11 @@
       </fieldset>
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
-      <li><a href="idea/{{thing._id}}" uib-tooltip="{{thing.info}}">{{thing.user.name}} - {{thing.name}}
-      <button type="button" class="close" ng-click="">+</button>
-      <button type="button" class="close" ng-click="">-</button>
-      <button ng-if="isMyItem(thing)" type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
+      <li>
+        <span></span><a href="idea/{{thing._id}}" uib-tooltip="{{thing.info}}">{{thing.user.name}} - {{thing.name}}</a>
+      <button type="submit" class="btn btn-danger" ng-click="$ctrl.addFeedback('Dim', thing._id)">-</button>
+      <button type="submit" class="btn btn-success" ng-click="$ctrl.addFeedback('Bright', thing._id)">+</button>
+      <button ng-if="isMyItem(thing)" type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></span></li>
     </ul>
   </div>
 </div>
@@ -208,45 +209,14 @@
     <h1 class="page-header">Feedback:</h1>
     <form class="thing-form form-horizontal well">
       <p class="input-group">
-        
-        <!-- Textarea -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="textarea">Feedback</label>
-          <div class="col-md-4">                     
-            <textarea class="form-control" id="textarea" name="textarea" placeholder="Feedback comment"  ng-model="$ctrl.newFeedback"> </textarea>
-          </div>
-        </div>
-              
-        <!-- Multiple Radios (inline) -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="radios">Idea Rating:</label>
-          <div class="col-md-4"> 
-            <label class="radio-inline" for="radios-0">
-              <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-              1
-            </label> 
-            <label class="radio-inline" for="radios-1">
-              <input type="radio" name="radios" id="radios-1" value="2">
-              2
-            </label> 
-            <label class="radio-inline" for="radios-2">
-              <input type="radio" name="radios" id="radios-2" value="3">
-              3
-            </label> 
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="radios" id="radios-3" value="4">
-              4
-            </label>
-          </div>
-        </div>
-
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" ng-click="$ctrl.addFeedback()">Add New</button>
+          <button type="submit" class="btn btn-danger" ng-click="$ctrl.addFeedback('Dim')">Dim...</button>
+          <button type="submit" class="btn btn-success" ng-click="$ctrl.addFeedback('Bright')">Bright!</button>
         </span>
       </p>
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="feedback in $ctrl.feedbacks">
-      <li><a href="#" uib-tooltip="{{feedback.info}}">{{feedback.user.name}} - {{feedback.name}}
+      <li><a href="#" uib-tooltip="{{feedback.info}}">{{feedback.user.name}} - {{feedback.opinion}}
       <button ng-if="isMyItem(feedback)" type="button" class="close" ng-click="$ctrl.deleteFeedback(feedback)">&times;</button></a></li>
     </ul>
   </div>
