@@ -16,8 +16,9 @@
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
+      
       $scope.isMyItem = function(item){
-        return (Auth.isLoggedIn() && item.user && item.user._id===Auth.getCurrentUser()._id) || Auth.isAdmin;
+        return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser()._id) || Auth.isAdmin;
       };
     }
 
@@ -50,13 +51,9 @@
         this.$http.post('/api/things', {
           name: this.newThing,
           info: this.newThingInfo,
-          image: this.newThingImage,
-          documents: this.newThingDoc
         });
         this.newThing = '';
         this.newThingInfo = '';
-        this.newThingImage = '';
-        this.newThingDoc = '';
       }
     }
 
