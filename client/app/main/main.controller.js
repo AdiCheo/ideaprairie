@@ -16,8 +16,9 @@
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
+      
       $scope.isMyItem = function(item){
-        return (Auth.isLoggedIn() && item.user && item.user._id===Auth.getCurrentUser()._id) || Auth.isAdmin;
+        return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser()._id) || Auth.isAdmin;
       };
     }
 
