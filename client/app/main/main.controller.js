@@ -78,8 +78,7 @@
 
 
     addFeedback(opinion, thingId) {
-      console.log(thingId);
-      if (opinion) {
+      if (opinion && thingId) {
         this.$http.post('/api/feedbacks', {
           opinion: opinion,
           thing: thingId
