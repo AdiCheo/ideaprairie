@@ -77,12 +77,13 @@
     }
 
 
-    addFeedback() {
-      if (this.newFeedback) {
+    addFeedback(opinion, thingId) {
+      console.log(thingId);
+      if (opinion) {
         this.$http.post('/api/feedbacks', {
-          name: this.newFeedback
+          opinion: opinion,
+          thing: thingId
         });
-        this.newFeedback = '';
       }
     }
 
