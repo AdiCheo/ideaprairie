@@ -1,17 +1,19 @@
 'use strict';
 
+var ideaId = '';
+
 (function(){
 
 class IdeaComponent {
   constructor($http, $scope, socket, $stateParams) {
     this.$http = $http;
     this.socket = socket;
-    this.id = $stateParams.id;
+    ideaId = $stateParams.id;
     this.comments = [];
   }
   
   $onInit() {
-    this.$http.get('/api/things/' + this.id)
+    this.$http.get('/api/things/' + ideaId)
       .then(response => {
         this.ideaDetails = response.data;
         this.socket.syncUpdates('thing', this.ideaDetails);
@@ -27,13 +29,13 @@ class IdeaComponent {
     if (this.newComment) {
       this.$http.post('/api/comments', {
         comment: this.newComment,
-        idea: this.id
+        idea: ideaId
       });
     }
   }
 
   isRelatedToIdea(commentObj) {
-    return true; // commentObj.idea === this.id;
+    return commentObj.idea === ideaId;
   }
 }
 
