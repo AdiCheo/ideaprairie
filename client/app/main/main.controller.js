@@ -10,6 +10,7 @@
       this.awesomeThings = [];
       this.campaigns = [];
       this.feedbacks = [];
+      this.comments = [];
       this.messages = [];
       this.isLoggedIn = Auth.isLoggedIn;
 
@@ -38,6 +39,11 @@
           .then(response => {
             this.feedbacks = response.data;
             this.socket.syncUpdates('feedback', this.feedbacks);
+          }),
+        this.$http.get('/api/comments')
+          .then(response => {
+            this.comments = response.data;
+            this.socket.syncUpdates('comment', this.comments);
           }),
         this.$http.get('/api/messages')
           .then(response => {
@@ -76,7 +82,14 @@
       }
     }
 
-
+    addComment() {
+      if (this.newComment) {
+        this.$http.post('/api/comments', {
+          comment: this.newComment
+        });
+      }
+    }
+    
     addFeedback(opinion, thingId) {
       if (opinion && thingId) {
         this.$http.post('/api/feedbacks', {
@@ -86,7 +99,6 @@
       }
     }
 
-
     addMessage() {
       if (this.newMessage) {
         this.$http.post('/api/messages', {
@@ -95,7 +107,6 @@
         this.newMessage = '';
       }
     }
-
 
     deleteThing(thing) {
       this.$http.delete('/api/things/' + thing._id);
@@ -112,7 +123,6 @@
     deleteMessage(message) {
       this.$http.delete('/api/messages/' + message._id);
     }
-
   }
 
   angular.module('ideaApp')
