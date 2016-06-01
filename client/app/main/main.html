@@ -206,15 +206,7 @@
 <div class="container">
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Feedback:</h1>
-    <form class="thing-form form-horizontal well">
-      <p class="input-group">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-danger" ng-click="$ctrl.addFeedback('Dim')">Dim...</button>
-          <button type="submit" class="btn btn-success" ng-click="$ctrl.addFeedback('Bright')">Bright!</button>
-        </span>
-      </p>
-    </form>
+    <h1 class="page-header">Feedback List:</h1>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="feedback in $ctrl.feedbacks">
       <li><a href="#" uib-tooltip="{{feedback.info}}">{{feedback.user.name}} - {{feedback.opinion}}
       <button ng-if="isMyItem(feedback)" type="button" class="close" ng-click="$ctrl.deleteFeedback(feedback)">&times;</button></a></li>
