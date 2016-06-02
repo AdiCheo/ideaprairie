@@ -10,13 +10,16 @@
       this.awesomeThings = [];
       this.campaigns = [];
       this.feedbacks = [];
+      this.comments = [];
       this.messages = [];
+      this.isLoggedIn = Auth.isLoggedIn;
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
+      
       $scope.isMyItem = function(item){
-        return (Auth.isLoggedIn() && item.user && item.user._id===Auth.getCurrentUser()._id) || Auth.isAdmin;
+        return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser()._id) || Auth.isAdmin;
       };
     }
 
@@ -37,18 +40,26 @@
             this.feedbacks = response.data;
             this.socket.syncUpdates('feedback', this.feedbacks);
           }),
+        this.$http.get('/api/comments')
+          .then(response => {
+            this.comments = response.data;
+            this.socket.syncUpdates('comment', this.comments);
+          }),
         this.$http.get('/api/messages')
           .then(response => {
             this.messages = response.data;
             this.socket.syncUpdates('message', this.messages);
         })]);
     }
+    
     addThing() {
       if (this.newThing) {
         this.$http.post('/api/things', {
-          name: this.newThing
+          name: this.newThing,
+          info: this.newThingInfo,
         });
         this.newThing = '';
+        this.newThingInfo = '';
       }
     }
 
@@ -71,16 +82,22 @@
       }
     }
 
-
-    addFeedback() {
-      if (this.newFeedback) {
-        this.$http.post('/api/feedbacks', {
-          name: this.newFeedback
+    addComment() {
+      if (this.newComment) {
+        this.$http.post('/api/comments', {
+          comment: this.newComment
         });
-        this.newFeedback = '';
       }
     }
-
+    
+    addFeedback(opinion, thingId) {
+      if (opinion && thingId) {
+        this.$http.post('/api/feedbacks', {
+          opinion: opinion,
+          thing: thingId
+        });
+      }
+    }
 
     addMessage() {
       if (this.newMessage) {
@@ -90,7 +107,6 @@
         this.newMessage = '';
       }
     }
-
 
     deleteThing(thing) {
       this.$http.delete('/api/things/' + thing._id);
@@ -107,7 +123,6 @@
     deleteMessage(message) {
       this.$http.delete('/api/messages/' + message._id);
     }
-
   }
 
   angular.module('ideaApp')

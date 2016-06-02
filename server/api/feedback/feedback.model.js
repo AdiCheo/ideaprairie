@@ -3,11 +3,14 @@
 import mongoose from 'mongoose';
 
 var FeedbackSchema = new mongoose.Schema({
-  name: String,
-  rating: String,
+  opinion: String,
   user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
+  },
+  thing: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Thing'
   },
   createdAt: {
       type: Date,
