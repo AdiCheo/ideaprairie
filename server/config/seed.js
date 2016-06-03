@@ -4,9 +4,17 @@
  */
 
 'use strict';
+import Campaign from '../api/campaign/campaign.model';
+import Comment from '../api/comment/comment.model';
+import Feedback from '../api/feedback/feedback.model';
+import Message from '../api/message/message.model';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
 
+Campaign.find({}).remove();
+Comment.find({}).remove();
+Feedback.find({}).remove();
+Message.find({}).remove();
 Thing.find({}).remove()
   .then(() => {
     Thing.create({
