@@ -17,7 +17,7 @@ class IdeaComponent {
       .then(response => {
         this.ideaDetails = response.data;
         this.socket.syncUpdates('thing', this.ideaDetails);
-      }),
+      });
       this.$http.get('/api/comments')
         .then(response => {
           this.comments = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
