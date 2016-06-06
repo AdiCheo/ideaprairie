@@ -1,0 +1,32 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="jumbotron">
+        <h1>{{$ctrl.ideaDetails.name}}</h1>
+        <p><code>by {{$ctrl.ideaDetails.user.name}}</code></p>
+        <p>{{$ctrl.ideaDetails.info}}</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="#" role="button">Vote</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-lg-12">
+    <h1 class="page-header">Comments:</h1>
+    <form class="thing-form form-horizontal well">
+      <p class="input-group">
+        
+        <input type="text" class="form-control" placeholder="Write your comment" ng-model="$ctrl.newComment">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" ng-click="$ctrl.addComment()">Add New</button>
+        </span>
+      </p>
+    </form>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="comment in $ctrl.comments">
+      <li><a href="#" uib-tooltip="{{comment.idea}}">{{comment.user.name}} - {{comment.comment}}
+      <button ng-if="isMyItem(comment)" type="button" class="close" ng-click="$ctrl.deleteComment(comment)">&times;</button></a></li>
+    </ul>
+  </div>
+</div>
