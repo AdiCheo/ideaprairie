@@ -16,6 +16,7 @@ var CampaignSchema = new mongoose.Schema({
   privacy: String,
   image: String,
   rewards: String,
+  monetaryRewards: Number,
   documents: String,
   user: {
     type: mongoose.Schema.ObjectId,
