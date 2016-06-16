@@ -71,7 +71,8 @@
           privacy: this.newCampaignPrivacy,
           image: this.newCampaignImage,
           rewards: this.newCampaignRewards,
-          documents: this.newCampaignDoc
+          documents: this.newCampaignDoc,
+          monetaryRewards: this.newCampaignMonetaryRewards
         });
         this.newCampaign = '';
         this.newCampaignInfo = '';
@@ -79,6 +80,7 @@
         this.newCampaignImage = '';
         this.newCampaignRewards = '';
         this.newCampaignDoc = '';
+        this.newCampaignMonetaryRewards = '';
       }
     }
 
