@@ -1,4 +1,5 @@
 'use strict';
+var ideaId = '';
 
 (function() {
 
@@ -53,7 +54,7 @@
         })]);
          this.$http.get('/api/comments')
         .then(response => {
-          this.commentsLength = response.data.filter(this.isRelatedToIdea); 
+          this.commentsLength = response.data(this.isRelatedToIdea); 
           this.socket.syncUpdates('comment', this.comments);
           console.log('Printing commentsLength: ' + this.commentsLength);
       }); 
@@ -101,7 +102,7 @@
     
     
     isRelatedToIdea(commentObj) {
-    return commentObj.idea === ideaId;
+      return commentObj.idea === ideaId;
     }
   
     addFeedback(opinion, thingId) {
