@@ -29,12 +29,14 @@ class ContestComponent {
         comment: this.newComment,
         idea: ideaId
       });
+      comment = '';
     }
   }
 
   isRelatedToIdea(commentObj) {
     return commentObj.idea === ideaId;
   }
+  
 }
 angular.module('ideaApp')
   .component('contest', {

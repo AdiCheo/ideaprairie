@@ -1,4 +1,5 @@
 'use strict';
+var ideaId = '';
 
 (function() {
 
@@ -12,6 +13,7 @@
       this.feedbacks = [];
       this.comments = [];
       this.messages = [];
+      this.commentsLength = [];
       this.isLoggedIn = Auth.isLoggedIn;
 
       $scope.$on('$destroy', function() {
@@ -50,6 +52,12 @@
             this.messages = response.data;
             this.socket.syncUpdates('message', this.messages);
         })]);
+         this.$http.get('/api/comments')
+        .then(response => {
+          this.commentsLength = response.data(this.isRelatedToIdea); 
+          this.socket.syncUpdates('comment', this.comments);
+          console.log('Printing commentsLength: ' + this.commentsLength);
+      }); 
     }
     
     addThing() {
@@ -92,6 +100,11 @@
       }
     }
     
+    
+    isRelatedToIdea(commentObj) {
+      return commentObj.idea === ideaId;
+    }
+  
     addFeedback(opinion, thingId) {
       if (opinion && thingId) {
         this.$http.post('/api/feedbacks', {
