@@ -23,7 +23,9 @@ class IdeaComponent {
           this.comments = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
           this.socket.syncUpdates('comment', this.comments);
       });
+     
   }
+  
   
   addComment() {
     if (this.newComment) {
