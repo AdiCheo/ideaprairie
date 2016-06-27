@@ -206,33 +206,37 @@
           <div class="top-idea">
             <a class="profile-idea-title" href="idea/{{thing._id}}" uib-tooltip="{{thing.info}}">{{thing.name}}</a>
             <p class="user-title">IDEA  <i class="fa fa-caret-right fa-lg"> </i> {{thing.user.name}}</p> 
-            <h6>Pitch</h6>
+            <p>{{thing.info}}</p>
+            <div class="timestamp">
+              {{thing.createdAt}}
+            </div>
+            <div class="soc">
+            <span>Share: </span>
+              <a target="_blank" href="javascript:;" onclick="window.open('http://twitter.com/home?status=MicroProduction+https://www.ideaprairie.com/users/microproduction/','','statusbar=0,toolbar=0,scrollbars=0,resizable=1,width=700,height=550'); return false" class="social-link social-twitter">twitter</a>
+              <a target="_blank" href="javascript:;" onclick="window.open('http://www.facebook.com/share.php?u=https://www.ideaprairie.com/users/microproduction/&amp;title=MicroProduction','','statusbar=0,toolbar=0,scrollbars=0,resizable=1,width=700,height=550'); return false" class="social-link social-facebook">facebook</a>
+            </div>
           </div>
+            
                           
           <div class="pitch-box-top">
-            <div class="watch-action"><div class="watch-position align-right">
-              <div class="action-like">
-                <a class="lbg-style4 like-1856 jlk" data-task="like" data-post_id="1856" data-nonce="43657a34b5" rel="nofollow">
-                  <!--<img src="https://www.ideaprairie.com/users/wp-content/plugins/bright-dim/images/pixel.gif" title="Bright">-->
-                  
-        <button type="submit" class="btn btn-success" ng-click="$ctrl.addFeedback('Bright', thing._id)">Bright</button>
-                  <span class="lc-1856 lc">4</span></a></div>
-              <div class="action-unlike">
-                <a class="unlbg-style4 unlike-1856 jlk" data-task="unlike" data-post_id="1856" data-nonce="43657a34b5" rel="nofollow">
-                  <!--<img src="https://www.ideaprairie.com/users/wp-content/plugins/bright-dim/images/pixel.gif" title="Dim">-->
-                  <button type="submit" class="btn btn-danger" ng-click="$ctrl.addFeedback('Dim', thing._id)">Dim</button>
-                  <span class="unlc-1856 unlc">0</span></a></div> </div> </div>
-          </div>
-          <div class="timestamp">
-            <p>{{thing.info}}</p>
-            
-          <div class="timestamp">
-           {{thing.createdAt}}</div>
-      
-          <div class="soc">
-          <span>Share: </span>
-            <a target="_blank" href="javascript:;" onclick="window.open('http://twitter.com/home?status=MicroProduction+https://www.ideaprairie.com/users/microproduction/','','statusbar=0,toolbar=0,scrollbars=0,resizable=1,width=700,height=550'); return false" class="social-link social-twitter">twitter</a>
-            <a target="_blank" href="javascript:;" onclick="window.open('http://www.facebook.com/share.php?u=https://www.ideaprairie.com/users/microproduction/&amp;title=MicroProduction','','statusbar=0,toolbar=0,scrollbars=0,resizable=1,width=700,height=550'); return false" class="social-link social-facebook">facebook</a>
+            <div class="watch-action">
+              <div class="watch-position align-right">
+                <div class="action-like">
+                  <a class="lbg-style4 like-1856 jlk" data-task="like" data-post_id="1856" data-nonce="43657a34b5" rel="nofollow">
+                    <!--<img src="https://www.ideaprairie.com/users/wp-content/plugins/bright-dim/images/pixel.gif" title="Bright">-->
+                    
+                    <button type="submit" class="btn btn-success" ng-click="$ctrl.addFeedback('Bright', thing._id)">Bright</button>
+                    <span class="lc-1856 lc">4</span>
+                  </a>
+                </div>
+                <div class="action-unlike">
+                  <a class="unlbg-style4 unlike-1856 jlk" data-task="unlike" data-post_id="1856" data-nonce="43657a34b5" rel="nofollow">
+                    <!--<img src="https://www.ideaprairie.com/users/wp-content/plugins/bright-dim/images/pixel.gif" title="Dim">-->
+                    <button type="submit" class="btn btn-danger" ng-click="$ctrl.addFeedback('Dim', thing._id)">Dim</button>
+                    <span class="unlc-1856 unlc">0</span></a>
+                </div> 
+              </div> 
+            </div>
           </div>
         </div>
         <button ng-if="isMyItem(thing)" type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></span>
