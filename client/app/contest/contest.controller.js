@@ -1,4 +1,5 @@
 'use strict';
+var ideaId = '';
 (function(){
 
 
@@ -8,6 +9,7 @@ class ContestComponent {
     this.socket = socket;
     ideaId = $stateParams.contestID;
     this.comments = [];
+    this.awesomeThings = [];
   }
   
   $onInit() {
@@ -21,7 +23,32 @@ class ContestComponent {
           this.comments = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
           this.socket.syncUpdates('comment', this.comments);
       });
+       this.$http.get('/api/things/')
+          .then(response => {
+            this.awesomeThings = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
+            this.socket.syncUpdates('thing', this.awesomeThings);
+          });
   }
+   addThing() {
+      if (this.newThing) {
+        this.$http.post('/api/things', {
+          name: this.newThing,
+          info: this.newThingInfo,
+          idea: ideaId
+        });
+        this.newThing = '';
+        this.newThingInfo = '';
+      }
+    }
+    addFeedback(opinion, thingId) {
+      if (opinion && thingId) {
+        this.$http.post('/api/feedbacks', {
+          opinion: opinion,
+          thing: thingId
+        });
+      }
+    }
+
   
   addComment() {
     if (this.newComment) {
@@ -35,6 +62,10 @@ class ContestComponent {
 
   isRelatedToIdea(commentObj) {
     return commentObj.idea === ideaId;
+  }
+  
+  deleteThing(thing) {
+    this.$http.delete('/api/things/' + thing._id);
   }
   
 }
