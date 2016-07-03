@@ -27,7 +27,7 @@
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="comment in $ctrl.comments">
       <li><a href="#" uib-tooltip="{{comment.idea}}">{{comment.user.name}} - {{comment.comment}}
-      <button ng-if="isMyItem(comment)" type="button" class="close" ng-click="$ctrl.deleteComment(comment)">&times;</button></a></li>
+      <button ng-if="isMyItem(comment)" type="button" class="close" ng-click="$ctrl.deleteComment(comment)">&times;</button></a><a  ng-click="$ctrl.createResponse(comment)" >Reply <span class="glyphicon glyphicon-arrow-left"></span></a></li>
     </ul>
   </div>
 </div>
