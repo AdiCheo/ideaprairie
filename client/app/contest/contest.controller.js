@@ -48,6 +48,10 @@ class ContestComponent {
         });
       }
     }
+    createResponse(comment){
+      $("#txtComment").attr("value","@admin"); // this hard coded text will have to be changed 
+      //document.getElementById("txtComment").setAttribute("value","@admin");
+    }
 
   
   addComment() {

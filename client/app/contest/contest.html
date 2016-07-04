@@ -19,7 +19,7 @@
     <form class="thing-form form-horizontal well">
       <p class="input-group">
         
-        <input type="text" class="form-control" placeholder="Write your comment" ng-model="$ctrl.newComment">
+        <input id="txtComment" type="text" class="form-control" placeholder="Write your comment" ng-model="$ctrl.newComment">
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary" ng-click="$ctrl.addComment()">Add New</button>
         </span>
@@ -27,7 +27,7 @@
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="comment in $ctrl.comments">
       <li><a href="#" uib-tooltip="{{comment.idea}}">{{comment.user.name}} - {{comment.comment}}
-      <button ng-if="isMyItem(comment)" type="button" class="close" ng-click="$ctrl.deleteComment(comment)">&times;</button></a><a  ng-click="$ctrl.createResponse(comment)" >Reply <span class="glyphicon glyphicon-arrow-left"></span></a></li>
+      <button ng-if="isMyItem(comment)" type="button" class="close" ng-click="$ctrl.deleteComment(comment)">&times;</button></a><button  ng-click="$ctrl.createResponse(comment)" >Reply </button></li>
     </ul>
   </div>
 </div>
