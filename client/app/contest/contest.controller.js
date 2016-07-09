@@ -4,12 +4,13 @@ var ideaId = '';
 
 
 class ContestComponent {
-  constructor($http, $scope, socket, $stateParams) {
+  constructor($http, $scope, socket, $stateParams, Auth ) {
     this.$http = $http;
     this.socket = socket;
     ideaId = $stateParams.contestID;
     this.comments = [];
     this.awesomeThings = [];
+    this.getCurrentUser = Auth.getCurrentUser;
   }
   
   $onInit() {
@@ -49,7 +50,7 @@ class ContestComponent {
       }
     }
     createResponse(comment){
-      $("#txtComment").attr("value","@admin"); // this hard coded text will have to be changed 
+      $("#txtComment").attr("value","@"+comment.user); 
       //document.getElementById("txtComment").setAttribute("value","@admin");
     }
 
@@ -58,9 +59,10 @@ class ContestComponent {
     if (this.newComment) {
       this.$http.post('/api/comments', {
         comment: this.newComment,
-        idea: ideaId
+        idea: ideaId,
+        user: this.getCurrentUser().name 
       });
-      comment = '';
+      //comment = '';
     }
   }
 

@@ -15,13 +15,14 @@ var ideaId = '';
       this.messages = [];
       this.commentsLength = [];
       this.isLoggedIn = Auth.isLoggedIn;
+      this.getCurrentUser = Auth.getCurrentUser;
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
       
       $scope.isMyItem = function(item){
-        return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser()._id) || Auth.isAdmin;
+        return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser().name) || Auth.isAdmin;
       };
     }
 
@@ -58,6 +59,7 @@ var ideaId = '';
           this.socket.syncUpdates('comment', this.comments);
           console.log('Printing commentsLength: ' + this.commentsLength);
       }); 
+      console.log('my name: '+ this.getCurrentUser().name );
     }
     
     addThing() {
