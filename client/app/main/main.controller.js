@@ -140,6 +140,19 @@ var ideaId = '';
     deleteMessage(message) {
       this.$http.delete('/api/messages/' + message._id);
     }
+    
+    getVoteCount(opinion,thingID){
+      var count = 0;
+      
+      for ( var x = 0 ; x < this.feedbacks.length ; x++ )
+      {
+        if (this.feedbacks[x].thing == thingID && this.feedbacks[x].opinion == opinion)
+        {
+          count++;  
+        }
+      }
+      return count;
+    }
   }
 
   angular.module('ideaApp')
