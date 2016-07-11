@@ -1,4 +1,5 @@
 'use strict';
+var ideaId = '';
 
 (function() {
 
@@ -12,14 +13,16 @@
       this.feedbacks = [];
       this.comments = [];
       this.messages = [];
+      this.commentsLength = [];
       this.isLoggedIn = Auth.isLoggedIn;
+      this.getCurrentUser = Auth.getCurrentUser;
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
       });
       
       $scope.isMyItem = function(item){
-        return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser()._id) || Auth.isAdmin;
+        return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser().name) || Auth.isAdmin;
       };
     }
 
@@ -50,6 +53,13 @@
             this.messages = response.data;
             this.socket.syncUpdates('message', this.messages);
         })]);
+         this.$http.get('/api/comments')
+        .then(response => {
+          this.commentsLength = response.data(this.isRelatedToIdea); 
+          this.socket.syncUpdates('comment', this.comments);
+          console.log('Printing commentsLength: ' + this.commentsLength);
+      }); 
+      console.log('my name: '+ this.getCurrentUser().name );
     }
     
     addThing() {
@@ -71,7 +81,8 @@
           privacy: this.newCampaignPrivacy,
           image: this.newCampaignImage,
           rewards: this.newCampaignRewards,
-          documents: this.newCampaignDoc
+          documents: this.newCampaignDoc,
+          monetaryRewards: this.newCampaignMonetaryRewards
         });
         this.newCampaign = '';
         this.newCampaignInfo = '';
@@ -79,6 +90,7 @@
         this.newCampaignImage = '';
         this.newCampaignRewards = '';
         this.newCampaignDoc = '';
+        this.newCampaignMonetaryRewards = '';
       }
     }
 
@@ -90,6 +102,11 @@
       }
     }
     
+    
+    isRelatedToIdea(commentObj) {
+      return commentObj.idea === ideaId;
+    }
+  
     addFeedback(opinion, thingId) {
       if (opinion && thingId) {
         this.$http.post('/api/feedbacks', {

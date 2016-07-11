@@ -4,10 +4,7 @@ import mongoose from 'mongoose';
 
 var CommentSchema = new mongoose.Schema({
   comment: String,
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User'
-  },
+  user: String,
   idea: {
     type: mongoose.Schema.ObjectId,
     ref: 'Thing'

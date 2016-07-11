@@ -6,6 +6,7 @@
         <h1>{{$ctrl.ideaDetails.name}}</h1>
         <p><code>by {{$ctrl.ideaDetails.user.name}}</code></p>
         <p>{{$ctrl.ideaDetails.info}}</p>
+        <p>number of comments: {{$ctrl.commentsLength}}</p>
         <p>
           <a class="btn btn-lg btn-primary" href="#" role="button">Vote</a>
         </p>
@@ -25,7 +26,7 @@
       </p>
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="comment in $ctrl.comments">
-      <li><a href="#" uib-tooltip="{{comment.idea}}">{{comment.user.name}} - {{comment.comment}}
+      <li><a href="#" uib-tooltip="{{comment.idea}}">{{comment.user.name}} - {{comment.comment}} 
       <button ng-if="isMyItem(comment)" type="button" class="close" ng-click="$ctrl.deleteComment(comment)">&times;</button></a></li>
     </ul>
   </div>
