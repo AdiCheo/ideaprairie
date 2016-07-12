@@ -114,6 +114,7 @@ var ideaId = '';
           thing: thingId
         });
       }
+      
     }
 
     addMessage() {
@@ -141,12 +142,13 @@ var ideaId = '';
       this.$http.delete('/api/messages/' + message._id);
     }
     
-    getVoteCount(opinion,thingID){
+    // this counts total number of Dim/Bright for each thing 
+    getVoteCount(opinion, thingId){
       var count = 0;
       
       for ( var x = 0 ; x < this.feedbacks.length ; x++ )
       {
-        if (this.feedbacks[x].thing == thingID && this.feedbacks[x].opinion == opinion)
+        if (this.feedbacks[x].thing === thingId && this.feedbacks[x].opinion === opinion)
         {
           count++;  
         }
