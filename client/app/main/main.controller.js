@@ -114,6 +114,7 @@ var ideaId = '';
           thing: thingId
         });
       }
+      
     }
 
     addMessage() {
@@ -139,6 +140,20 @@ var ideaId = '';
 
     deleteMessage(message) {
       this.$http.delete('/api/messages/' + message._id);
+    }
+    
+    // this counts total number of Dim/Bright for each thing 
+    getVoteCount(opinion, thingId){
+      var count = 0;
+      
+      for ( var x = 0 ; x < this.feedbacks.length ; x++ )
+      {
+        if (this.feedbacks[x].thing === thingId && this.feedbacks[x].opinion === opinion)
+        {
+          count++;  
+        }
+      }
+      return count;
     }
   }
 
