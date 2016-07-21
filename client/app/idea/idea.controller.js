@@ -14,10 +14,10 @@ class IdeaComponent {
   }
   
   $onInit() {
-    this.$http.get('/api/things/' + ideaId)
+    this.$http.get('/api/ideas/' + ideaId)
       .then(response => {
         this.ideaDetails = response.data;
-        this.socket.syncUpdates('thing', this.ideaDetails);
+        this.socket.syncUpdates('idea', this.ideaDetails);
       });
     this.$http.get('/api/comments')
       .then(response => {

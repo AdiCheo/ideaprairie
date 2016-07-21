@@ -17,7 +17,7 @@
   
   <div class="col-lg-12">
     <h1 class="page-header">Comments:</h1>
-    <form class="thing-form form-horizontal well">
+    <form class="idea-form form-horizontal well">
       <p class="input-group">
         
         <input id="txtComment" type="text" class="form-control" placeholder="Write your comment" ng-model="$ctrl.newComment">
@@ -36,7 +36,7 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Ideas:</h1>
-    <form class="thing-form form-horizontal well">
+    <form class="idea-form form-horizontal well">
       
       <fieldset>
       
@@ -48,33 +48,33 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Idea Title</label>  
             <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" placeholder="What's your bright idea?" class="form-control input-md" ng-model="$ctrl.newThing">
+            <input id="textinput" name="textinput" type="text" placeholder="What's your bright idea?" class="form-control input-md" ng-model="$ctrl.newIdea">
             </div>
           </div>
           <!-- Textarea -->
           <div class="form-group">
             <label class="col-md-4 control-label" for="textarea">Pitch</label>
             <div class="col-md-4">                     
-              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newThingInfo">Add a description</textarea>
+              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newIdeaInfo">Add a description</textarea>
             </div>
           </div>
           
           <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addIdea()">Add New</button>
           </span>
         </p>
         
       </fieldset>
     </form>
-    <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-repeat="thing in $ctrl.awesomeThings">
+    <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-repeat="idea in $ctrl.awesomeIdeas">
       <li>
         <div class="profile-idea-box">
           <div class="top-idea">
-            <a class="profile-idea-title" href="idea/{{thing._id}}" uib-tooltip="{{thing.info}}">{{thing.name}}</a>
-            <p class="user-title">IDEA  <i class="fa fa-caret-right fa-lg"> </i> {{thing.user.name}}</p> 
-            <p>{{thing.info}}</p>
+            <a class="profile-idea-title" href="idea/{{idea._id}}" uib-tooltip="{{idea.info}}">{{idea.name}}</a>
+            <p class="user-title">IDEA  <i class="fa fa-caret-right fa-lg"> </i> {{idea.user.name}}</p> 
+            <p>{{idea.info}}</p>
             <div class="timestamp">
-              {{thing.createdAt}}
+              {{idea.createdAt}}
             </div>
             <div class="soc">
             <span>Share: </span>
@@ -91,21 +91,21 @@
                   <a class="lbg-style4 like-1856 jlk" data-task="like" data-post_id="1856" data-nonce="43657a34b5" rel="nofollow">
                     <!--<img src="https://www.ideaprairie.com/users/wp-content/plugins/bright-dim/images/pixel.gif" title="Bright">-->
                     
-                    <button type="submit" class="btn btn-success" ng-click="$ctrl.addFeedback('Bright', thing._id)">Bright</button>
+                    <button type="submit" class="btn btn-success" ng-click="$ctrl.addFeedback('Bright', idea._id)">Bright</button>
                     <span class="lc-1856 lc">4</span>
                   </a>
                 </div>
                 <div class="action-unlike">
                   <a class="unlbg-style4 unlike-1856 jlk" data-task="unlike" data-post_id="1856" data-nonce="43657a34b5" rel="nofollow">
                     <!--<img src="https://www.ideaprairie.com/users/wp-content/plugins/bright-dim/images/pixel.gif" title="Dim">-->
-                    <button type="submit" class="btn btn-danger" ng-click="$ctrl.addFeedback('Dim', thing._id)">Dim</button>
+                    <button type="submit" class="btn btn-danger" ng-click="$ctrl.addFeedback('Dim', idea._id)">Dim</button>
                     <span class="unlc-1856 unlc">0</span></a>
                 </div> 
               </div> 
             </div>
           </div>
         </div>
-        <button ng-if="isMyItem(thing)" type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></span>
+        <button ng-if="isMyItem(idea)" type="button" class="close" ng-click="$ctrl.deleteIdea(idea)">&times;</button></span>
       </li>
     </ul>
   </div>

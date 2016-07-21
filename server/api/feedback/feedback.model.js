@@ -8,9 +8,9 @@ var FeedbackSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   },
-  thing: {
+  idea: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Thing'
+    ref: 'Idea'
   },
   createdAt: {
       type: Date,

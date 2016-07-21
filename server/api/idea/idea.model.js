@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
+var IdeaSchema = new mongoose.Schema({
   name: String,
   info: String,
   user: {
@@ -16,13 +16,13 @@ var ThingSchema = new mongoose.Schema({
   active: Boolean
 });
 
-ThingSchema.pre('find', function(next){
+IdeaSchema.pre('find', function(next){
   this.populate('user', 'name');
   next();
 });
-ThingSchema.pre('findOne', function(next){
+IdeaSchema.pre('findOne', function(next){
   this.populate('user', 'name');
   next();
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('Idea', IdeaSchema);

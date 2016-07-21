@@ -8,7 +8,7 @@ var ideaId = '';
     constructor($http, $scope, socket, Auth) {
       this.$http = $http;
       this.socket = socket;
-      this.awesomeThings = [];
+      this.awesomeIdeas = [];
       this.campaigns = [];
       this.feedbacks = [];
       this.comments = [];
@@ -18,7 +18,7 @@ var ideaId = '';
       this.getCurrentUser = Auth.getCurrentUser;
 
       $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('thing');
+        socket.unsyncUpdates('idea');
       });
       
       $scope.isMyItem = function(item){
@@ -28,10 +28,10 @@ var ideaId = '';
 
     $onInit() {
       Promise.all([
-        this.$http.get('/api/things')
+        this.$http.get('/api/ideas')
           .then(response => {
-            this.awesomeThings = response.data;
-            this.socket.syncUpdates('thing', this.awesomeThings);
+            this.awesomeIdeas = response.data;
+            this.socket.syncUpdates('idea', this.awesomeIdeas);
           }),
         this.$http.get('/api/campaigns')
           .then(response => {
@@ -57,19 +57,17 @@ var ideaId = '';
         .then(response => {
           this.commentsLength = response.data.filter(this.isRelatedToIdea); 
           this.socket.syncUpdates('comment', this.comments);
-          console.log('Printing commentsLength: ' + this.commentsLength);
       }); 
-      console.log('my name: '+ this.getCurrentUser().name );
     }
     
-    addThing() {
-      if (this.newThing) {
-        this.$http.post('/api/things', {
-          name: this.newThing,
-          info: this.newThingInfo,
+    addIdea() {
+      if (this.newIdea) {
+        this.$http.post('/api/ideas', {
+          name: this.newIdea,
+          info: this.newIdeaInfo,
         });
-        this.newThing = '';
-        this.newThingInfo = '';
+        this.newIdea = '';
+        this.newIdeaInfo = '';
       }
     }
 
@@ -107,11 +105,11 @@ var ideaId = '';
       return commentObj.idea === ideaId;
     }
   
-    addFeedback(opinion, thingId) {
-      if (opinion && thingId) {
+    addFeedback(opinion, ideaId) {
+      if (opinion && ideaId) {
         this.$http.post('/api/feedbacks', {
           opinion: opinion,
-          thing: thingId
+          idea: ideaId
         });
       }
       
@@ -126,8 +124,8 @@ var ideaId = '';
       }
     }
 
-    deleteThing(thing) {
-      this.$http.delete('/api/things/' + thing._id);
+    deleteIdea(idea) {
+      this.$http.delete('/api/ideas/' + idea._id);
     }
     
     deleteCampaign(campaign) {
@@ -142,13 +140,13 @@ var ideaId = '';
       this.$http.delete('/api/messages/' + message._id);
     }
     
-    // this counts total number of Dim/Bright for each thing 
-    getVoteCount(opinion, thingId){
+    // this counts total number of Dim/Bright for each idea 
+    getVoteCount(opinion, ideaId){
       var count = 0;
       
       for ( var x = 0 ; x < this.feedbacks.length ; x++ )
       {
-        if (this.feedbacks[x].thing === thingId && this.feedbacks[x].opinion === opinion)
+        if (this.feedbacks[x].idea === ideaId && this.feedbacks[x].opinion === opinion)
         {
           count++;  
         }

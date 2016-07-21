@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/things              ->  index
- * POST    /api/things              ->  create
- * GET     /api/things/:id          ->  show
- * PUT     /api/things/:id          ->  update
- * DELETE  /api/things/:id          ->  destroy
+ * GET     /api/ideas              ->  index
+ * POST    /api/ideas              ->  create
+ * GET     /api/ideas/:id          ->  show
+ * PUT     /api/ideas/:id          ->  update
+ * DELETE  /api/ideas/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Thing from './thing.model';
+import Idea from './idea.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -72,44 +72,44 @@ function handleUnauthorized(req, res) {
   }
 }
 
-// Gets a list of Things
+// Gets a list of Ideas
 export function index(req, res) {
-  return Thing.find().exec()
+  return Idea.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Thing from the DB
+// Gets a single Idea from the DB
 export function show(req, res) {
-  return Thing.findById(req.params.id).exec()
+  return Idea.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Thing in the DB
+// Creates a new Idea in the DB
 export function create(req, res) {
   req.body.user = req.user;
-  return Thing.create(req.body)
+  return Idea.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing Thing in the DB
+// Updates an existing Idea in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  return Thing.findById(req.params.id).exec()
+  return Idea.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Thing from the DB
+// Deletes a Idea from the DB
 export function destroy(req, res) {
-  return Thing.findById(req.params.id).exec()
+  return Idea.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(handleUnauthorized(req, res))
     .then(removeEntity(res))

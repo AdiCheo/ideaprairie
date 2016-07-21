@@ -8,16 +8,16 @@ import Campaign from '../api/campaign/campaign.model';
 import Comment from '../api/comment/comment.model';
 import Feedback from '../api/feedback/feedback.model';
 import Message from '../api/message/message.model';
-import Thing from '../api/thing/thing.model';
+import Idea from '../api/idea/idea.model';
 import User from '../api/user/user.model';
 
 Campaign.find({}).remove();
 Comment.find({}).remove();
 Feedback.find({}).remove();
 Message.find({}).remove();
-Thing.find({}).remove()
+Idea.find({}).remove()
   .then(() => {
-    Thing.create({
+    Idea.create({
       name: 'Development Tools',
       info: 'Integration with popular tools such as Bower, Grunt, Babel, Karma, ' +
              'Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, ' +

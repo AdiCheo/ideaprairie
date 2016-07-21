@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newThing;
+var newIdea;
 
-describe('Thing API:', function() {
+describe('Idea API:', function() {
 
-  describe('GET /api/things', function() {
-    var things;
+  describe('GET /api/ideas', function() {
+    var ideas;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things')
+        .get('/api/ideas')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          things = res.body;
+          ideas = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      expect(things).to.be.instanceOf(Array);
+      expect(ideas).to.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/things', function() {
+  describe('POST /api/ideas', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/things')
+        .post('/api/ideas')
         .send({
-          name: 'New Thing',
-          info: 'This is the brand new thing!!!'
+          name: 'New Idea',
+          info: 'This is the brand new idea!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          newThing = res.body;
+          newIdea = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created thing', function() {
-      expect(newThing.name).to.equal('New Thing');
-      expect(newThing.info).to.equal('This is the brand new thing!!!');
+    it('should respond with the newly created idea', function() {
+      expect(newIdea.name).to.equal('New Idea');
+      expect(newIdea.info).to.equal('This is the brand new idea!!!');
     });
 
   });
 
-  describe('GET /api/things/:id', function() {
-    var thing;
+  describe('GET /api/ideas/:id', function() {
+    var idea;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things/' + newThing._id)
+        .get('/api/ideas/' + newIdea._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          thing = res.body;
+          idea = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      thing = {};
+      idea = {};
     });
 
-    it('should respond with the requested thing', function() {
-      expect(thing.name).to.equal('New Thing');
-      expect(thing.info).to.equal('This is the brand new thing!!!');
+    it('should respond with the requested idea', function() {
+      expect(idea.name).to.equal('New Idea');
+      expect(idea.info).to.equal('This is the brand new idea!!!');
     });
 
   });
 
-  describe('PUT /api/things/:id', function() {
-    var updatedThing;
+  describe('PUT /api/ideas/:id', function() {
+    var updatedIdea;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/things/' + newThing._id)
+        .put('/api/ideas/' + newIdea._id)
         .send({
-          name: 'Updated Thing',
-          info: 'This is the updated thing!!!'
+          name: 'Updated Idea',
+          info: 'This is the updated idea!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          updatedThing = res.body;
+          updatedIdea = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedThing = {};
+      updatedIdea = {};
     });
 
-    it('should respond with the updated thing', function() {
-      expect(updatedThing.name).to.equal('Updated Thing');
-      expect(updatedThing.info).to.equal('This is the updated thing!!!');
+    it('should respond with the updated idea', function() {
+      expect(updatedIdea.name).to.equal('Updated Idea');
+      expect(updatedIdea.info).to.equal('This is the updated idea!!!');
     });
 
   });
 
-  describe('DELETE /api/things/:id', function() {
+  describe('DELETE /api/ideas/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/ideas/' + newIdea._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Thing API:', function() {
         });
     });
 
-    it('should respond with 404 when thing does not exist', function(done) {
+    it('should respond with 404 when idea does not exist', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/ideas/' + newIdea._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

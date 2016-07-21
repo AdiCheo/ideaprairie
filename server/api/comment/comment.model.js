@@ -7,7 +7,7 @@ var CommentSchema = new mongoose.Schema({
   user: String,
   idea: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Thing'
+    ref: 'Idea'
   },
   createdAt: {
       type: Date,

@@ -13,7 +13,7 @@ export default function(app) {
   app.use('/api/feedbacks', require('./api/feedback'));
   app.use('/api/messages', require('./api/message'));
   app.use('/api/campaigns', require('./api/campaign'));
-  app.use('/api/things', require('./api/thing'));
+  app.use('/api/ideas', require('./api/idea'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth').default);

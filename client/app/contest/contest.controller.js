@@ -9,7 +9,7 @@ class ContestComponent {
     this.socket = socket;
     ideaId = $stateParams.contestID;
     this.comments = [];
-    this.awesomeThings = [];
+    this.awesomeIdeas = [];
     this.getCurrentUser = Auth.getCurrentUser;
   }
   
@@ -17,35 +17,35 @@ class ContestComponent {
     this.$http.get('/api/campaigns/' + ideaId)
       .then(response => {
         this.ideaDetails = response.data;
-        this.socket.syncUpdates('thing', this.ideaDetails);
+        this.socket.syncUpdates('idea', this.ideaDetails);
       });
       this.$http.get('/api/comments')
         .then(response => {
           this.comments = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
           this.socket.syncUpdates('comment', this.comments);
       });
-       this.$http.get('/api/things/')
+       this.$http.get('/api/ideas/')
           .then(response => {
-            this.awesomeThings = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
-            this.socket.syncUpdates('thing', this.awesomeThings);
+            this.awesomeIdeas = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
+            this.socket.syncUpdates('idea', this.awesomeIdeas);
           });
   }
-   addThing() {
-      if (this.newThing) {
-        this.$http.post('/api/things', {
-          name: this.newThing,
-          info: this.newThingInfo,
+   addIdea() {
+      if (this.newIdea) {
+        this.$http.post('/api/ideas', {
+          name: this.newIdea,
+          info: this.newIdeaInfo,
           idea: ideaId
         });
-        this.newThing = '';
-        this.newThingInfo = '';
+        this.newIdea = '';
+        this.newIdeaInfo = '';
       }
     }
-    addFeedback(opinion, thingId) {
-      if (opinion && thingId) {
+    addFeedback(opinion, ideaId) {
+      if (opinion && ideaId) {
         this.$http.post('/api/feedbacks', {
           opinion: opinion,
-          thing: thingId
+          idea: ideaId
         });
       }
     }
@@ -70,8 +70,8 @@ class ContestComponent {
     return commentObj.idea === ideaId;
   }
   
-  deleteThing(thing) {
-    this.$http.delete('/api/things/' + thing._id);
+  deleteIdea(idea) {
+    this.$http.delete('/api/ideas/' + idea._id);
   }
   
 }
