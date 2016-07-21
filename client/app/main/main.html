@@ -160,8 +160,8 @@
       </fieldset>
     </form>
     <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="campaign in $ctrl.campaigns">
-      <li><a href="contest/{{campaign._id}}" uib-tooltip="{{campaign.info}}">{{campaign.user.name}} - {{campaign.name}} - {{commentsLength.length}} 
-      <button ng-if="isMyItem(campaign)" type="button" class="close" ng-click="$ctrl.deleteCampaign(campaign)">&times;</button></a></li>
+      <li><a href="contest/{{campaign._id}}" uib-tooltip="{{campaign.info}}" style="display: inline-block; width: 96%;">{{campaign.user.name}} - {{campaign.name}} - {{commentsLength.length}}</a>
+      <button ng-if="isMyItem(campaign)" type="button" class="close" ng-click="$ctrl.deleteCampaign(campaign)">&times;</button></li>
     </ul>
   </div>
 </div>
