@@ -87,24 +87,14 @@
       <!-- Form Name -->
       <legend>New Idea</legend>
         <p class="input-group">
-          
-          <!-- Text input-->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Idea Title</label>  
-            <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" placeholder="What's your bright idea?" class="form-control input-md" ng-model="$ctrl.newIdea">
-            </div>
+          <div class="profile-idea-box">
+            <div class="top-idea">
+              <input id="textinput" name="textinput" type="text" placeholder="What's your bright idea?" class="form-control input-md" ng-model="$ctrl.newIdea">
+              <textarea class="form-control" id="textarea" placeholder="Describe your idea concisely..." name="textarea" ng-model="$ctrl.newIdeaInfo"></textarea>
+            </div>   
           </div>
-          <!-- Textarea -->
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="textarea">Pitch</label>
-            <div class="col-md-4">                     
-              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newIdeaInfo">Add a description</textarea>
-            </div>
-          </div>
-          
           <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addIdea()">Add New</button>
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addIdea()">Submit</button>
           </span>
         </p>
         
