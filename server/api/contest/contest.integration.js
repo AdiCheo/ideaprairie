@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newCampaign;
+var newContest;
 
-describe('Campaign API:', function() {
+describe('Contest API:', function() {
 
-  describe('GET /api/campaigns', function() {
-    var campaigns;
+  describe('GET /api/contests', function() {
+    var contests;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/campaigns')
+        .get('/api/contests')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          campaigns = res.body;
+          contests = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      expect(campaigns).to.be.instanceOf(Array);
+      expect(contests).to.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/campaigns', function() {
+  describe('POST /api/contests', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/campaigns')
+        .post('/api/contests')
         .send({
-          name: 'New Campaign',
-          info: 'This is the brand new campaign!!!'
+          name: 'New Contest',
+          info: 'This is the brand new contest!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Campaign API:', function() {
           if (err) {
             return done(err);
           }
-          newCampaign = res.body;
+          newContest = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created campaign', function() {
-      expect(newCampaign.name).to.equal('New Campaign');
-      expect(newCampaign.info).to.equal('This is the brand new campaign!!!');
+    it('should respond with the newly created contest', function() {
+      expect(newContest.name).to.equal('New Contest');
+      expect(newContest.info).to.equal('This is the brand new contest!!!');
     });
 
   });
 
-  describe('GET /api/campaigns/:id', function() {
-    var campaign;
+  describe('GET /api/contests/:id', function() {
+    var contest;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/campaigns/' + newCampaign._id)
+        .get('/api/contests/' + newContest._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          campaign = res.body;
+          contest = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      campaign = {};
+      contest = {};
     });
 
-    it('should respond with the requested campaign', function() {
-      expect(campaign.name).to.equal('New Campaign');
-      expect(campaign.info).to.equal('This is the brand new campaign!!!');
+    it('should respond with the requested contest', function() {
+      expect(contest.name).to.equal('New Contest');
+      expect(contest.info).to.equal('This is the brand new contest!!!');
     });
 
   });
 
-  describe('PUT /api/campaigns/:id', function() {
-    var updatedCampaign;
+  describe('PUT /api/contests/:id', function() {
+    var updatedContest;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/campaigns/' + newCampaign._id)
+        .put('/api/contests/' + newContest._id)
         .send({
-          name: 'Updated Campaign',
-          info: 'This is the updated campaign!!!'
+          name: 'Updated Contest',
+          info: 'This is the updated contest!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Campaign API:', function() {
           if (err) {
             return done(err);
           }
-          updatedCampaign = res.body;
+          updatedContest = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedCampaign = {};
+      updatedContest = {};
     });
 
-    it('should respond with the updated campaign', function() {
-      expect(updatedCampaign.name).to.equal('Updated Campaign');
-      expect(updatedCampaign.info).to.equal('This is the updated campaign!!!');
+    it('should respond with the updated contest', function() {
+      expect(updatedContest.name).to.equal('Updated Contest');
+      expect(updatedContest.info).to.equal('This is the updated contest!!!');
     });
 
   });
 
-  describe('DELETE /api/campaigns/:id', function() {
+  describe('DELETE /api/contests/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/campaigns/' + newCampaign._id)
+        .delete('/api/contests/' + newContest._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Campaign API:', function() {
         });
     });
 
-    it('should respond with 404 when campaign does not exist', function(done) {
+    it('should respond with 404 when contest does not exist', function(done) {
       request(app)
-        .delete('/api/campaigns/' + newCampaign._id)
+        .delete('/api/contests/' + newContest._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

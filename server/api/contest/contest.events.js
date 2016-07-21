@@ -1,15 +1,15 @@
 /**
- * Campaign model events
+ * Contest model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-import Campaign from './campaign.model';
-var CampaignEvents = new EventEmitter();
+import Contest from './contest.model';
+var ContestEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-CampaignEvents.setMaxListeners(0);
+ContestEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  Campaign.schema.post(e, emitEvent(event));
+  Contest.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    CampaignEvents.emit(event + ':' + doc._id, doc);
-    CampaignEvents.emit(event, doc);
+    ContestEvents.emit(event + ':' + doc._id, doc);
+    ContestEvents.emit(event, doc);
   }
 }
 
-export default CampaignEvents;
+export default ContestEvents;

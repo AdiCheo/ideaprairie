@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose';
 
-var CampaignSchema = new mongoose.Schema({
+var ContestSchema = new mongoose.Schema({
   name: String,
   info: String,
   startDate: {
@@ -33,13 +33,13 @@ var CampaignSchema = new mongoose.Schema({
   active: Boolean
 });
 
-CampaignSchema.pre('find', function(next){
+ContestSchema.pre('find', function(next){
   this.populate('user', 'name');
   next();
 });
-CampaignSchema.pre('findOne', function(next){
+ContestSchema.pre('findOne', function(next){
   this.populate('user', 'name');
   next();
 });
 
-export default mongoose.model('Campaign', CampaignSchema);
+export default mongoose.model('Contest', ContestSchema);

@@ -9,7 +9,7 @@ var ideaId = '';
       this.$http = $http;
       this.socket = socket;
       this.awesomeIdeas = [];
-      this.campaigns = [];
+      this.contests = [];
       this.feedbacks = [];
       this.comments = [];
       this.messages = [];
@@ -33,10 +33,10 @@ var ideaId = '';
             this.awesomeIdeas = response.data;
             this.socket.syncUpdates('idea', this.awesomeIdeas);
           }),
-        this.$http.get('/api/campaigns')
+        this.$http.get('/api/contests')
           .then(response => {
-            this.campaigns = response.data;
-            this.socket.syncUpdates('campaign', this.campaigns);
+            this.contests = response.data;
+            this.socket.syncUpdates('contest', this.contests);
           }),
         this.$http.get('/api/feedbacks')
           .then(response => {
@@ -71,24 +71,24 @@ var ideaId = '';
       }
     }
 
-    addCampaign() {
-      if (this.newCampaign) {
-        this.$http.post('/api/campaigns', {
-          name: this.newCampaign,
-          info: this.newCampaignInfo,
-          privacy: this.newCampaignPrivacy,
-          image: this.newCampaignImage,
-          rewards: this.newCampaignRewards,
-          documents: this.newCampaignDoc,
-          monetaryRewards: this.newCampaignMonetaryRewards
+    addContest() {
+      if (this.newContest) {
+        this.$http.post('/api/contests', {
+          name: this.newContest,
+          info: this.newContestInfo,
+          privacy: this.newContestPrivacy,
+          image: this.newContestImage,
+          rewards: this.newContestRewards,
+          documents: this.newContestDoc,
+          monetaryRewards: this.newContestMonetaryRewards
         });
-        this.newCampaign = '';
-        this.newCampaignInfo = '';
-        this.newCampaignPrivacy = '';
-        this.newCampaignImage = '';
-        this.newCampaignRewards = '';
-        this.newCampaignDoc = '';
-        this.newCampaignMonetaryRewards = '';
+        this.newContest = '';
+        this.newContestInfo = '';
+        this.newContestPrivacy = '';
+        this.newContestImage = '';
+        this.newContestRewards = '';
+        this.newContestDoc = '';
+        this.newContestMonetaryRewards = '';
       }
     }
 
@@ -128,8 +128,8 @@ var ideaId = '';
       this.$http.delete('/api/ideas/' + idea._id);
     }
     
-    deleteCampaign(campaign) {
-      this.$http.delete('/api/campaigns/' + campaign._id);
+    deleteContest(contest) {
+      this.$http.delete('/api/contests/' + contest._id);
     }
 
     deleteFeedback(feedback) {

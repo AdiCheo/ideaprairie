@@ -80,7 +80,7 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Contests:</h1>
-    <form class="campaign-form form-horizontal well">
+    <form class="contest-form form-horizontal well">
       <fieldset>
       
       <!-- Form Name -->
@@ -91,7 +91,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Contest Name</label>  
             <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" placeholder="Enter a name for your contest" class="form-control input-md" ng-model="$ctrl.newCampaign">
+            <input id="textinput" name="textinput" type="text" placeholder="Enter a name for your contest" class="form-control input-md" ng-model="$ctrl.newContest">
             </div>
           </div>
           
@@ -99,7 +99,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="filebutton">Add Image</label>
             <div class="col-md-4">
-              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignImage">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newContestImage">
             </div>
           </div>
         
@@ -107,7 +107,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textarea">Contest Description</label>
             <div class="col-md-4">                     
-              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newCampaignInfo">Add a description</textarea>
+              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newContestInfo">Add a description</textarea>
             </div>
           </div>
           
@@ -129,13 +129,13 @@
           	</div>
             </div>
           </div>
-          <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.newCampaignPrivacy">
+          <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.newContestPrivacy">
           
           <!-- File Button --> 
           <div class="form-group">
             <label class="col-md-4 control-label" for="filebutton">Add Files</label>
             <div class="col-md-4">
-              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignRewards">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newContestRewards">
             </div>
           </div>
           
@@ -143,25 +143,25 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="filebutton">Add Rewards</label>
             <div class="col-md-4">
-              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignDoc">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newContestDoc">
             </div>
           </div>
           <!-- Text input-->
           <div class="form-group">
             <label class="col-md-4 control-label" for="MonetaryRewards">Monetary Rewards</label>  
             <div class="col-md-4">
-            <input id="MonetaryRewards" name="MonetaryRewards" type="number" class="form-control input-md" ng-model="$ctrl.newCampaignMonetaryRewards">
+            <input id="MonetaryRewards" name="MonetaryRewards" type="number" class="form-control input-md" ng-model="$ctrl.newContestMonetaryRewards">
             </div>
           </div>
           <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addCampaign()">Add New</button>
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addContest()">Add New</button>
           </span>
         </p>
       </fieldset>
     </form>
-    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="campaign in $ctrl.campaigns">
-      <li><a href="contest/{{campaign._id}}" uib-tooltip="{{campaign.info}}" style="display: inline-block; width: 96%;">{{campaign.user.name}} - {{campaign.name}} - {{commentsLength.length}}</a>
-      <button ng-if="isMyItem(campaign)" type="button" class="close" ng-click="$ctrl.deleteCampaign(campaign)">&times;</button></li>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="contest in $ctrl.contests">
+      <li><a href="contest/{{contest._id}}" uib-tooltip="{{contest.info}}" style="display: inline-block; width: 96%;">{{contest.user.name}} - {{contest.name}} - {{commentsLength.length}}</a>
+      <button ng-if="isMyItem(contest)" type="button" class="close" ng-click="$ctrl.deleteContest(contest)">&times;</button></li>
     </ul>
   </div>
 </div>

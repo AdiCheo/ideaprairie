@@ -4,14 +4,14 @@
  */
 
 'use strict';
-import Campaign from '../api/campaign/campaign.model';
+import Contest from '../api/contest/contest.model';
 import Comment from '../api/comment/comment.model';
 import Feedback from '../api/feedback/feedback.model';
 import Message from '../api/message/message.model';
 import Idea from '../api/idea/idea.model';
 import User from '../api/user/user.model';
 
-Campaign.find({}).remove();
+Contest.find({}).remove();
 Comment.find({}).remove();
 Feedback.find({}).remove();
 Message.find({}).remove();

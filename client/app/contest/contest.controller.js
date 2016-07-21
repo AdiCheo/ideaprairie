@@ -14,7 +14,7 @@ class ContestComponent {
   }
   
   $onInit() {
-    this.$http.get('/api/campaigns/' + ideaId)
+    this.$http.get('/api/contest/' + ideaId)
       .then(response => {
         this.ideaDetails = response.data;
         this.socket.syncUpdates('idea', this.ideaDetails);
