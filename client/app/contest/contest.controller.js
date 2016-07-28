@@ -29,14 +29,7 @@ class ContestComponent {
             this.awesomeThings = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
             this.socket.syncUpdates('thing', this.awesomeThings);
           });
-          // only contest creator can see edit button
-          // if(this.ideaDetails.user.name == this.getCurrentUser().name){
-          //   // $( "#controlls" ).append( "<a class=\"btn btn-lg btn-primary\" href=\"#\" role=\"button\">Edit</a>" );
-          //   console.log("owner logged in");
-          // }
-          // else{
-          //   console.log("owner logged out");
-          // }
+         
   }
    addThing() {
       if (this.newThing) {
@@ -77,6 +70,7 @@ class ContestComponent {
   isRelatedToIdea(commentObj) {
     return commentObj.idea === ideaId;
   }
+  // checks if contest owner is vewing the site 
   isContestOwner(){
     if(this.ideaDetails.user.name == this.getCurrentUser().name){
       return true;
