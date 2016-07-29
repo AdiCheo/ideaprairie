@@ -31,6 +31,26 @@ class ContestComponent {
           });
          
   }
+   updateCampaign() {
+      if (this.newCampaign) {
+        this.$http.put('/api/campaigns'+ideaId, {
+          name: this.updateCampaign,
+          info: this.updateCampaignInfo,
+          privacy: this.updateCampaignPrivacy,
+          image: this.updateCampaignImage,
+          rewards: this.updateCampaignRewards,
+          documents: this.updateCampaignDoc,
+          monetaryRewards: this.updateCampaignMonetaryRewards
+        });
+        this.updateCampaign = '';
+        this.updateCampaignInfo = '';
+        this.updateCampaignPrivacy = '';
+        this.updateCampaignImage = '';
+        this.updateCampaignRewards = '';
+        this.updateCampaignDoc = '';
+        this.updateCampaignMonetaryRewards = '';
+      }
+    }
    addThing() {
       if (this.newThing) {
         this.$http.post('/api/things', {
