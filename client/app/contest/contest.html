@@ -32,7 +32,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Contest Name</label>  
             <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" class="form-control input-md" ng-model="$ctrl.newCampaign" ng-model="hello">
+            <input id="textinput" name="textinput" type="text" class="form-control input-md" ng-model="$ctrl.updatedCampaign" ng-model="hello">
             </div>
           </div>
           
@@ -40,7 +40,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="filebutton">Add Image</label>
             <div class="col-md-4">
-              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignImage">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.updateCampaignImage">
             </div>
           </div>
         
@@ -48,7 +48,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textarea">Contest Description</label>
             <div class="col-md-4">                     
-              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.newCampaignInfo">Add a description</textarea>
+              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.updateCampaignInfo">Add a description</textarea>
             </div>
           </div>
           
@@ -70,13 +70,13 @@
           	</div>
             </div>
           </div>
-          <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.newCampaignPrivacy">
+          <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.updateCampaignPrivacy">
           
           <!-- File Button --> 
           <div class="form-group">
             <label class="col-md-4 control-label" for="filebutton">Add Files</label>
             <div class="col-md-4">
-              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignRewards">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.updateCampaignRewards">
             </div>
           </div>
           
@@ -84,18 +84,18 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="filebutton">Add Rewards</label>
             <div class="col-md-4">
-              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.newCampaignDoc">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.updateCampaignDoc">
             </div>
           </div>
           <!-- Text input-->
           <div class="form-group">
             <label class="col-md-4 control-label" for="MonetaryRewards">Monetary Rewards</label>  
             <div class="col-md-4">
-            <input id="MonetaryRewards" name="MonetaryRewards" type="number" class="form-control input-md" ng-model="$ctrl.newCampaignMonetaryRewards">
+            <input id="MonetaryRewards" name="MonetaryRewards" type="number" class="form-control input-md" ng-model="$ctrl.updateCampaignMonetaryRewards">
             </div>
           </div>
           <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" ng-click="$ctrl.addCampaign()">Add New</button>
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.updateCampaign()">Update</button>
           </span>
         </p>
       </fieldset>

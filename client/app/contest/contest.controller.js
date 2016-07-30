@@ -32,9 +32,10 @@ class ContestComponent {
          
   }
    updateCampaign() {
-      if (this.newCampaign) {
-        this.$http.put('/api/campaigns'+ideaId, {
-          name: this.updateCampaign,
+      // if (this.newCampaign) {
+      
+        this.$http.put('/api/campaigns/'+ideaId, {
+          name: this.updatedCampaign,
           info: this.updateCampaignInfo,
           privacy: this.updateCampaignPrivacy,
           image: this.updateCampaignImage,
@@ -42,14 +43,14 @@ class ContestComponent {
           documents: this.updateCampaignDoc,
           monetaryRewards: this.updateCampaignMonetaryRewards
         });
-        this.updateCampaign = '';
+        this.updatedCampaign = '';
         this.updateCampaignInfo = '';
         this.updateCampaignPrivacy = '';
         this.updateCampaignImage = '';
         this.updateCampaignRewards = '';
         this.updateCampaignDoc = '';
         this.updateCampaignMonetaryRewards = '';
-      }
+      //}
     }
    addThing() {
       if (this.newThing) {
@@ -92,12 +93,14 @@ class ContestComponent {
   }
   // checks if contest owner is vewing the site 
   isContestOwner(){
-    if(this.ideaDetails.user.name == this.getCurrentUser().name){
-      return true;
-    }
-    else{
-      return false;
-    }
+    // if(this.ideaDetails.user.name == this.getCurrentUser().name){
+    //   return true;
+    // }
+    // else{
+    //   return false;
+    // }
+    return true; 
+   
   }
   
   deleteThing(thing) {
