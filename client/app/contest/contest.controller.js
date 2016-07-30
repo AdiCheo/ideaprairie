@@ -43,6 +43,7 @@ class ContestComponent {
           documents: this.updateCampaignDoc,
           monetaryRewards: this.updateCampaignMonetaryRewards
         });
+        $route.reload(); 
         this.updatedCampaign = '';
         this.updateCampaignInfo = '';
         this.updateCampaignPrivacy = '';
