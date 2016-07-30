@@ -29,8 +29,32 @@ class ContestComponent {
             this.awesomeIdeas = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
             this.socket.syncUpdates('idea', this.awesomeIdeas);
           });
+         
   }
-   addIdea() {
+
+   updateCampaign() {
+      // if (this.newCampaign) {
+      
+        this.$http.put('/api/campaigns/'+ideaId, {
+          name: this.updatedCampaign,
+          info: this.updateCampaignInfo,
+          privacy: this.updateCampaignPrivacy,
+          image: this.updateCampaignImage,
+          rewards: this.updateCampaignRewards,
+          documents: this.updateCampaignDoc,
+          monetaryRewards: this.updateCampaignMonetaryRewards
+        });
+        $route.reload(); 
+        this.updatedCampaign = '';
+        this.updateCampaignInfo = '';
+        this.updateCampaignPrivacy = '';
+        this.updateCampaignImage = '';
+        this.updateCampaignRewards = '';
+        this.updateCampaignDoc = '';
+        this.updateCampaignMonetaryRewards = '';
+      //}
+    }
+     addIdea() {
       if (this.newIdea) {
         this.$http.post('/api/ideas', {
           name: this.newIdea,
@@ -68,6 +92,17 @@ class ContestComponent {
 
   isRelatedToIdea(commentObj) {
     return commentObj.idea === ideaId;
+  }
+  // checks if contest owner is vewing the site 
+  isContestOwner(){
+    if(this.ideaDetails.user.name == this.getCurrentUser().name){
+      return true;
+    }
+    else{
+      return false;
+    }
+    
+   
   }
   
   deleteIdea(idea) {

@@ -10,9 +10,103 @@
         <p>{{$ctrl.ideaDetails.info}}</p>
         <p>
           <a class="btn btn-lg btn-primary" href="#" role="button">Vote</a>
+          <!--<a class="btn btn-lg btn-primary" href="#" role="button" ng-if="$ctrl.isContestOwner()">Edit</a>-->
         </p>
       </div>
     </div>
+  </div>
+  
+  <!-- tools admin has to edit each their contest   -->
+  <div ng-show="$ctrl.isContestOwner()">
+    <div class="container">
+<div class="row">
+  <div class="col-lg-12">
+    <form class="campaign-form form-horizontal well">
+      <fieldset>
+      
+      <!-- Form Name -->
+      <legend>Edit Contest {{ $ctrl.getCurrentUser().name }}</legend>
+        <p class="input-group">
+          
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Contest Name</label>  
+            <div class="col-md-4">
+            <input id="textinput" name="textinput" type="text" class="form-control input-md" ng-model="$ctrl.updatedCampaign" ng-model="hello">
+            </div>
+          </div>
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add Image</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.updateCampaignImage">
+            </div>
+          </div>
+        
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textarea">Contest Description</label>
+            <div class="col-md-4">                     
+              <textarea class="form-control" id="textarea" name="textarea" ng-model="$ctrl.updateCampaignInfo">Add a description</textarea>
+            </div>
+          </div>
+          
+          <!-- Multiple Radios -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="radios">Privacy</label>
+            <div class="col-md-4">
+            <div class="radio">
+              <label for="radios-0">
+                <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                Public
+              </label>
+          	</div>
+            <div class="radio">
+              <label for="radios-1">
+                <input type="radio" name="radios" id="radios-1" value="2">
+                Invite Only
+              </label>
+          	</div>
+            </div>
+          </div>
+          <input type="text" class="form-control" placeholder="Contest privacy" ng-model="$ctrl.updateCampaignPrivacy">
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add Files</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.updateCampaignRewards">
+            </div>
+          </div>
+          
+          <!-- File Button --> 
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">Add Rewards</label>
+            <div class="col-md-4">
+              <input id="filebutton" name="filebutton" class="input-file" type="file" ng-model="$ctrl.updateCampaignDoc">
+            </div>
+          </div>
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="MonetaryRewards">Monetary Rewards</label>  
+            <div class="col-md-4">
+            <input id="MonetaryRewards" name="MonetaryRewards" type="number" class="form-control input-md" ng-model="$ctrl.updateCampaignMonetaryRewards">
+            </div>
+          </div>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" ng-click="$ctrl.updateCampaign()">Update</button>
+          </span>
+        </p>
+      </fieldset>
+    </form>
+    <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="campaign in $ctrl.campaigns">
+      <li><a href="contest/{{campaign._id}}" uib-tooltip="{{campaign.info}}">{{campaign.user.name}} - {{campaign.name}} - {{commentsLength.length}} 
+      <button ng-if="isMyItem(campaign)" type="button" class="close" ng-click="$ctrl.deleteCampaign(campaign)">&times;</button></a></li>
+    </ul>
+  </div>
+</div>
+</div>
   </div>
   
   <div class="col-lg-12">
