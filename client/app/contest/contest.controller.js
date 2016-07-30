@@ -94,13 +94,13 @@ class ContestComponent {
   }
   // checks if contest owner is vewing the site 
   isContestOwner(){
-    // if(this.ideaDetails.user.name == this.getCurrentUser().name){
-    //   return true;
-    // }
-    // else{
-    //   return false;
-    // }
-    return true; 
+    if(this.ideaDetails.user.name == this.getCurrentUser().name){
+      return true;
+    }
+    else{
+      return false;
+    }
+    
    
   }
   
