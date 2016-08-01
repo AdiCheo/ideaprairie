@@ -25,12 +25,11 @@ var ideaId = '';
         return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser().name) || Auth.isAdmin;
       };
       
-      $scope.myModel = 1;
+      $scope.myModel = [1, 2];
 
       $scope.myOptions = [
-        {id: 1, title: 'Spectrometer'},
-        {id: 2, title: 'Star Chart'},
-        {id: 3, title: 'Laser Pointer'}
+        {id: 1, title: 'Bright'},
+        {id: 2, title: 'Dim'}
       ];
       
       $scope.myConfig = {
