@@ -24,6 +24,26 @@ var ideaId = '';
       $scope.isMyItem = function(item){
         return (Auth.isLoggedIn() && item.user && item.user._id === Auth.getCurrentUser().name) || Auth.isAdmin;
       };
+      
+      $scope.myModel = 1;
+
+      $scope.myOptions = [
+        {id: 1, title: 'Spectrometer'},
+        {id: 2, title: 'Star Chart'},
+        {id: 3, title: 'Laser Pointer'}
+      ];
+      
+      $scope.myConfig = {
+        create: true,
+        valueField: 'id',
+        labelField: 'title',
+        delimiter: '|',
+        placeholder: 'Pick something',
+        onInitialize: function(selectize){
+          // receives the selectize object as an argument
+        },
+        // maxItems: 1
+      };
     }
 
     $onInit() {
