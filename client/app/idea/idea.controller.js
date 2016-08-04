@@ -10,21 +10,46 @@ class IdeaComponent {
     this.socket = socket;
     ideaId = $stateParams.id;
     this.comments = [];
-    this.commentsLength = 0;
+    this.feedbacks = [];
+    
+    
+    $scope.myModel = [1, 2];
+    $scope.myOptions = [
+      {id: 1, title: 'Bright'},
+      {id: 2, title: 'Dim'}
+    ];
+    
+    $scope.myConfig = {
+      create: true,
+      valueField: 'id',
+      labelField: 'title',
+      delimiter: '|',
+      placeholder: 'Pick something',
+      onInitialize: function(selectize){
+        // receives the selectize object as an argument
+      },
+      // maxItems: 1
+    };
   }
   
   $onInit() {
-    this.$http.get('/api/ideas/' + ideaId)
-      .then(response => {
-        this.ideaDetails = response.data;
-        this.socket.syncUpdates('idea', this.ideaDetails);
-      });
-    this.$http.get('/api/comments')
-      .then(response => {
-        this.comments = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
-        this.commentsLength = this.comments.length; // Filter only relevant comments and get length
-        this.socket.syncUpdates('comment', this.comments);
-    });
+    
+    Promise.all([
+      this.$http.get('/api/ideas/' + ideaId)
+        .then(response => {
+          this.ideaDetails = response.data;
+          this.socket.syncUpdates('idea', this.ideaDetails);
+        }),
+      this.$http.get('/api/feedbacks')
+        .then(response => {
+          this.feedbacks = response.data.filter(this.isRelatedToIdea);
+          this.socket.syncUpdates('feedback', this.feedbacks);
+        }),
+      this.$http.get('/api/comments')
+        .then(response => {
+          this.comments = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
+          this.socket.syncUpdates('comment', this.comments);
+      })]);
   }
   
   
@@ -35,12 +60,11 @@ class IdeaComponent {
         idea: ideaId
       });
       this.newComment = '';
-      this.commentsLength++;
     }
   }
 
-  isRelatedToIdea(commentObj) {
-    return commentObj.idea === ideaId;
+  isRelatedToIdea(obj) {
+    return obj.idea === ideaId;
   }
 }
 

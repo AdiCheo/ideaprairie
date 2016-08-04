@@ -153,6 +153,7 @@ var ideaId = '';
       }
       return count;
     }
+    
   }
 
   angular.module('ideaApp')
