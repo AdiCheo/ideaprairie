@@ -6,10 +6,12 @@
         <h1>{{$ctrl.ideaDetails.name}}</h1>
         <p><code>by {{$ctrl.ideaDetails.user.name}}</code></p>
         <p>{{$ctrl.ideaDetails.info}}</p>
-        <p>number of comments: {{$ctrl.commentsLength}}</p>
+        <p>number of comments: {{$ctrl.comments.length}}</p>
+        <p>number of feedback: {{$ctrl.feedbacks.length}}</p>
         <p>
           <a class="btn btn-lg btn-primary" href="#" role="button">Vote</a>
         </p>
+        <selectize config='myConfig' options='myOptions' ng-model="myModel"></selectize>
       </div>
     </div>
   </div>
