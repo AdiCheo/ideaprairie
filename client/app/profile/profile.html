@@ -1,1 +1,11 @@
-<div>This is the profile view.</div>
+<div class="jumbotron">
+<h1>hello {{ $ctrl.getCurrentUser().name }} </h1>
+<p>email: {{ $ctrl.getCurrentUser().email }}</p>
+<p>role: {{ $ctrl.getCurrentUser().role }}</p>
+<p>provider: {{ $ctrl.getCurrentUser().provider }}</p>
+<p>facebook: {{ $ctrl.getCurrentUser().facebook }}</p>
+<p>twitter: {{ $ctrl.getCurrentUser().twitter }}</p>
+<p>google: {{ $ctrl.getCurrentUser().google }}</p>
+<p>github: {{ $ctrl.getCurrentUser().github }}</p>
+
+</div>

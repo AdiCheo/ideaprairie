@@ -1,10 +1,24 @@
 'use strict';
+
 (function(){
 
 class ProfileComponent {
-  constructor() {
-    this.message = 'Hello';
+  constructor($http, $scope, socket, $stateParams, Auth) {
+     this.$http = $http;
+    this.socket = socket;
+    this.getCurrentUser = Auth.getCurrentUser;
   }
+
+
+  // $onInit(){
+  // Promise.all([
+  //     this.$http.get('/api/user/'.getCurrentUser()._id)
+  //       .then(response => {
+  //         this.userDetails = response.data;
+  //         this.socket.syncUpdates('user', this.userDetails);
+  //       })
+  //   ]);
+  // }
 }
 
 angular.module('ideaApp')
@@ -12,5 +26,7 @@ angular.module('ideaApp')
     templateUrl: 'app/profile/profile.html',
     controller: ProfileComponent
   });
+  
+  
 
 })();
