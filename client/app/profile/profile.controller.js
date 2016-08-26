@@ -20,7 +20,7 @@ class ProfileComponent {
   //   ]);
   this.$http.get('/api/ideas/')
           .then(response => {
-            this.awesomeIdeas = response.data.filter(this.isRelatedToIdea); // Filter only relevant comments
+            this.awesomeIdeas = response.data.filter(this.isRelatedToIdea); // Filter only relevant ideas
             this.socket.syncUpdates('idea', this.awesomeIdeas);
           });
   }
@@ -36,9 +36,9 @@ class ProfileComponent {
     this.$http.delete('/api/ideas/' + idea._id);
   }
   
-  isRelatedToIdea(commentObj) {
-    return commentObj.idea.user._id === getCurrentUser()._id;
-    // return true;
+  isRelatedToIdea(ideaObj) {
+    // return ideaObj.idea.user._id === getCurrentUser()._id;
+    return true;
   }
 }
 
