@@ -1,12 +1,12 @@
 'use strict';
-var getCurrentUser = '';
+// var getCurrentUser = '';
 (function(){
 
 class ProfileComponent {
   constructor($http, $scope, socket, $stateParams, Auth) {
      this.$http = $http;
     this.socket = socket;
-    getCurrentUser = Auth.getCurrentUser;
+   this.getCurrentUser = Auth.getCurrentUser;
   }
 
 
@@ -37,8 +37,11 @@ class ProfileComponent {
   }
   
   isRelatedToIdea(ideaObj) {
-    // return ideaObj.idea.user._id === getCurrentUser()._id;
+    // var userID = this.getCurrentUser()._id;
+    // return ideaObj.idea.user._id === this.getCurrentUser()._id;
+    // console.log(userID);
     return true;
+    
   }
 }
 
